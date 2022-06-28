@@ -24,7 +24,7 @@ env = environ.Env()
 environ.Env.read_env()
 SECRET_KEY = env('SECRET_KEY')
 
-DEBUG = False
+DEBUG = bool(int(env('DEBUG_MODE')))
 
 ALLOWED_HOSTS = [env('HOST_1')]
 
