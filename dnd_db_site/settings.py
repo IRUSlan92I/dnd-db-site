@@ -32,6 +32,8 @@ ALLOWED_HOSTS = [env('HOST_1')]
 # Application definition
 
 INSTALLED_APPS = [
+    'helloworld',
+    'faerun_calendar',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calendar</title>
+    <style>
+        table.month, table.month th, table.month td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        table.month {
+            margin: 10px;
+            float: left;
+            width: 250px;
+            max-width: 250px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Календарь</h1>
+    {% extends 'faerun_calendar/calendar.html' %}
+</body>
+</html>
