@@ -1,11 +1,9 @@
 <table class="month">
     <tr>
-        <th colspan="10">{{title}}</th>
+        <th colspan="10" class="title">{{title}}</th>
     </tr>
     {% if subtitle %}
-        <tr>
-            <td colspan="10">{{subtitle}}</td>
-        </tr>
+        <th colspan="10" class="subtitle">{{subtitle}}</th>
     {% endif %}
     {% if oneday != 1 %}
     <tr>
@@ -29,7 +27,12 @@
         <td>16</td>
         <td>17</td>
         <td>18</td>
+        {% if title == "Миртул" %}
+        <td class="current">19</td>
+        {% else %}
         <td>19</td>
+        {% endif %}
+
         <td>20</td>
     </tr>
     <tr>
