@@ -1,12 +1,18 @@
 {% extends 'main/pagetemplate.html' %}
 
+{% load static %}
+
+{% block additional_css %}
+<link rel="stylesheet" href="{% static 'links/css/main.css' %}">
+{% endblock %}
+
 {% block pagetitle %}
 Полезные ссылки
 {% endblock %}
 
 {% block content %}
 <div class="linkspage">
-    <h1>Полезные ссылки</h1>
+    <h1 class="title">Полезные ссылки</h1>
     <ul>
         <li><a href="https://drive.google.com/drive/folders/1GgZ5pwoZEv9AwnsgfSLYpTIP0MtFsez_">Записи игр по Драконьему кушу (Google Drive)</a></li>
         <li><a href="https://disk.yandex.ru/d/A9vQyEO6W_kZVg">Записи игр по Драконьему кушу (Яндекс Диск)</a></li>

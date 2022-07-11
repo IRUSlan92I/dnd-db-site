@@ -1,5 +1,8 @@
-h1 {
-    text-align: center;
+div.calendarpage {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 20px;
 }
 
 table.month, table.month th, table.month td {
@@ -27,9 +30,14 @@ table.month th.subtitle {
     font-weight: normal;
 }
 
+div.month {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 table.month {
     margin: 10px;
-    float: left;
     width: 300px;
     max-width: 300px;
     border-radius: 10px;
