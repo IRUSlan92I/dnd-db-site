@@ -20,5 +20,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('faerun_calendar.urls')),
+    path('', include('main.urls')),
+    path('calendar/', include('faerun_calendar.urls')),
+    path('links/', include('links.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

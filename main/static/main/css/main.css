@@ -1,0 +1,33 @@
+aside.menu {
+    border: 3px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    margin: 25px;
+}
+
+aside.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+aside.menu li {
+    display: flex;
+    margin: 10px;
+}
+
+aside.menu a {
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    background: DeepSkyBlue;
+    padding: 10px;
+}
+
+aside.menu a:hover {
+    background: DodgerBlue;
+}

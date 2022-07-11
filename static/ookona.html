@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        label {
+            background: azure;
+            border: solid black 1px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        input[type=text] {
+            background: LightYellow;
+            border: solid black 1px;
+            border-radius: 5px;
+            overflow: hidden;
+            text-align: center;
+        }
+        hr {
+            clear: both;
+        }
+        input.error {
+            background: salmon;
+        }
+        div.misc, div.abilities, div.skills {
+            float: left;
+            min-height: 30px;
+        }
+        div.misc {
+            min-width: 280px;
+        }
+        div.abilities {
+            min-width: 200px;
+        }
+        div.skills {
+            min-width: 280px;
+        }
+        div.misc, div.abilities, div.skills {
+            margin: 5px 15px;
+            border: solid black 2px;
+            border-radius: 5px;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+        }
+        div.misc *, div.abilities *, div.skills * {
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+        div.abilities input, div.skills input {
+            max-width: 25px;
+        }
+        label.skills {
+            padding: 5px;
+        }
+        input[type=checkbox]:checked ~ .skills {
+            color: white;
+            background: navy;
+        }
+    </style>
+    <script>
+        const checkbox_suffix = "_cb";
+        const message_suffix = "_msg";
+
+        const min_ability = 10;
+        const max_ability = 80;
+        const max_sum_ability = 80;
+
+        class Ability {
+            constructor(name, short_name_rus, long_name_rus) {
+                this.name = name;
+                this.short_name_rus = short_name_rus;
+                this.long_name_rus = long_name_rus;
+            }
+        }
+        const abilities = [
+            new Ability("dexterity", "ЛВК", "Ловкость"),
+            new Ability("strength", "СИЛ", "Сила"),
+            new Ability("constitution", "ВЫН", "Выносливость"),
+            new Ability("appearance", "НАР", "Наружность"),
+            new Ability("charisma", "ХАР", "Харизма"),
+            new Ability("will", "ВОЛ", "Воля"),
+            new Ability("wisdom", "МУД", "Мудрость"),
+            new Ability("intelligence", "ИНТ", "Интеллект"),
+        ]
+
+        class Skill {
+            constructor(name, base, name_rus, dependencies) {
+                this.name = name;
+                this.base = base;
+                this.name_rus = name_rus;
+                this.dependencies = dependencies;
+            }
+        }
+        const skills = [
+            new Skill("light_firearm", 5, "Лёгкий огнестрел", {}),
+            new Skill("medium_firearm", 5, "Средний огнестрел", {}),
+            new Skill("heavy_firearm", 5, "Тяжёлый огнестрел", {}),
+            new Skill("recon", 5, "Разведка", {}),
+            new Skill("gambling", 1, "Азартные игры", {}),
+            new Skill("artillery", 0, "Артиллерия", {}),
+            new Skill("barter", 10, "Бартер", {}),
+            new Skill("blocking", 10, "Блокирование", {}),
+            new Skill("accounting", 5, "Бухгалтерское дело", {}),
+            new Skill("riding", 5, "Верховая езда", {}),
+            new Skill("lockpicking", 1, "Взлом", {}),
+            new Skill("explosives", 0, "Взрывчатка", {}),
+            new Skill("pole_weapons", 5, "Древковое оружие", {}),
+            new Skill("blunt_weapons", 10, "Дробящее оружие", {}),
+            new Skill("slashing_weapons", 5, "Рубящее оружие", {}),
+            new Skill("pierce_weapons", 5, "Колющее оружие", {}),
+<!--            new Skill("", "", {}),-->
+        ]
+
+
+        function isDataValidForAbility(data) {
+            var value = parseInt(data);
+            if (value != value) {
+                return false;
+            }
+            if (value < min_ability || value > max_ability) {
+                return false;
+            }
+            return true;
+        }
+
+        function validateAbilities() {
+            var sum = 0;
+            for (const ability of abilities) {
+                var element = document.getElementById(ability.name);
+                const value = parseInt(element.value);
+                if (value == value) {
+                    sum += value;
+                }
+            }
+
+            const max = 500;
+
+
+            var error_desc_sum = "";
+            var error_desc_separate = "";
+            var error_desc_separate_names = [];
+
+            const is_sum_error = sum > max || sum != sum;
+
+            if (is_sum_error) {
+                error_desc_sum = `Неверное значение суммы характеристик. Сумма не должна превышать ${max}`;
+            }
+
+            for (const ability of abilities) {
+                var element = document.getElementById(ability.name);
+                const is_data_valid = isDataValidForAbility(element.value);
+
+                if (!is_data_valid) {
+                    if (!error_desc_separate) {
+                        error_desc_sum = `Неверное значение характеристик. Значение должно быть в диапазоне от ${min_ability} до ${max_ability}`;
+                    }
+                    error_desc_separate_names += ability.name_rus;
+                }
+
+                element.className = !is_sum_error && is_data_valid ? "" : "error";
+            }
+
+            document.getElementById('abilities_result').textContent = max-sum;
+
+            const error_text = "";
+
+            if (error_desc_sum) {
+                error_text += error_desc_sum;
+            }
+
+            if (error_desc_separate) {
+                if (error_text) error_text += "\n";
+                error_text += error_desc_separate;
+            }
+
+            document.getElementById(`abilities${message_suffix}`).textContent = error_text;
+        }
+
+        function isDataValidForSkill(data, base, is_selected) {
+            var value = parseInt(data);
+            if (value != value) {
+                return false;
+            }
+            if (is_selected) {
+                if (value < 20 || value > 70) {
+                    return false;
+                }
+            }
+            else {
+                if (value < base || value > 70) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function validateSkills() {
+            var sum_selected = 0;
+            var sum_unselected = 0;
+            var sum_unselected_base = 0;
+            var count_selected = 0;
+
+            for (const skill of skills) {
+                var element = document.getElementById(skill.name);
+                var cb = document.getElementById(`${skill.name}${checkbox_suffix}`);
+                const value = parseInt(element.value);
+                if (cb.checked) {
+                    count_selected++;
+                }
+                if (value == value) {
+                    if (cb.checked) {
+                        sum_selected += value
+                    }
+                    else {
+                        sum_unselected += value
+                    }
+                }
+                const base = parseInt(skill.sum_unselected_base);
+                if (base == base) {
+                    sum_unselected_base += base;
+                }
+            }
+
+            const max_selected = 500;
+            const max_unselected = 80;
+            const max_count_selected = 8;
+
+            for (const skill of skills) {
+                var element = document.getElementById(skill.name);
+                var cb = document.getElementById(`${skill.name}${checkbox_suffix}`);
+                const base = parseInt(skill.sum_unselected_base);
+                if (base == base) {
+                    sum_unselected_base += base;
+                }
+                var isValid = count_selected <= max_count_selected;
+
+                if (isValid) {
+                    if (cb.checked) {
+                        isValid = sum_selected <= max_selected || sum_selected != sum_selected;
+                        cb.className = "selected";
+                    }
+                    else {
+                        var isValid = (sum_unselected-sum_unselected_base <= max_unselected ||
+                                        sum_unselected != sum_unselected);
+                        cb.className = "";
+                    }
+                }
+
+                if (isValid) {
+                    isValid = isDataValidForSkill(element.value, base, cb.checked);
+                }
+
+                element.className = isValid ? "" : "error";
+            }
+
+            document.getElementById('skills_result_selected').textContent = max_selected-sum_selected;
+            document.getElementById('skills_result_unselected').textContent = max_unselected-sum_unselected;
+        }
+
+        function updateAfterLoading() {
+            for (const ability of abilities) {
+                var element = document.getElementById(ability.name);
+                element.oninput = validateAbilities;
+            }
+
+            for (const skill of skills) {
+                var element = document.getElementById(skill.name);
+                var cb = document.getElementById(`${skill.name}${checkbox_suffix}`);
+                element.oninput = validateSkills;
+                cb.oninput = validateSkills;
+            }
+
+            validateAbilities();
+            validateSkills();
+        }
+    </script>
+</head>
+<body>
+    <h1>Оокона</h1>
+
+    <hr>
+
+    <p class="misc">
+        <div class="misc">
+            Имя: <input id="name" type="text">
+        </div>
+        <div class="misc">
+            Класс: <input id="class" type="text">
+        </div>
+    </p>
+
+    <hr>
+
+    <p class="abilities">
+        <script>
+            for (const ability of abilities) {
+                document.write(`<div class="abilities">`);
+                document.write(`<input id="${ability.name}" type="text"></input>`);
+                document.write(`<label class="skills">${ability.long_name_rus}</label>`);
+                document.write(`</div>`);
+            }
+        </script>
+        <div class="abilities">
+            Осталось: <span id="abilities_result"></span>
+        </div>
+        <script>
+            document.write(`<p id="abilities${message_suffix}"></p>`);
+        </script>
+    </p>
+
+    <hr>
+
+    <p class="skills">
+        <script>
+            for (const skill of skills) {
+                document.write(`<div class="skills">`);
+                document.write(`<input class="skills" id="${skill.name}${checkbox_suffix}" type="checkbox">`);
+                document.write(`<input id="${skill.name}" type="text">`);
+                document.write(`<label for="${skill.name}${checkbox_suffix}" class="skills">${skill.name_rus}</label>`);
+                document.write(`</div>`);
+            }
+        </script>
+        <div class="skills">
+            Осталось (осн/доп): <span id="skills_result_selected"></span>/<span id="skills_result_unselected"></span>
+        </div>
+        <script>
+            document.write(`<p id="skills${message_suffix}"></p>`);
+        </script>
+    </p>
+
+    <script>
+        updateAfterLoading();
+    </script>
+
+</body>
+</html>
+

@@ -1,17 +1,13 @@
-<!DOCTYPE html>
+{% extends 'main/pagetemplate.html' %}
 
-{% load static %}
+{% block pagetitle %}
+Календарь
+{% endblock %}
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Calendar</title>
+{% block content %}
+<div class="calendarpage">
+        <h1>Календарь</h1>
+        {% include 'faerun_calendar/calendar.html' %}
+    </div>
+{% endblock %}
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'faerun_calendar/css/main.css' %}">
-</head>
-<body>
-    <h1>Календарь</h1>
-    {% include 'faerun_calendar/calendar.html' %}
-</body>
-</html>
