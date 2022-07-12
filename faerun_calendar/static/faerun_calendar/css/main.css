@@ -12,10 +12,6 @@ table.month, table.month th, table.month td {
     background: gainsboro;
 }
 
-table.month th {
-    text-align: center;
-}
-
 table.month td {
     text-align: right;
 }
@@ -30,15 +26,14 @@ table.month th.subtitle {
     font-weight: normal;
 }
 
-div.month {
-    display: inline-flex;
-    flex-direction: row;
-    justify-content: space-between;
+div.calendar {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
 }
 
 table.month {
     margin: 10px;
-    width: 300px;
-    max-width: 300px;
-    border-radius: 10px;
+    width: 350px;
+    max-width: 350px;
 }

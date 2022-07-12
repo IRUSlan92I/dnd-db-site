@@ -14,16 +14,9 @@ aside.menu {
     margin: 25px;
 }
 
-aside.menu ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+div.menu {
     display: flex;
-}
-
-aside.menu li {
-    display: flex;
-    margin: 10px;
+    flex-flow: row wrap;
 }
 
 aside.menu a {
@@ -33,6 +26,17 @@ aside.menu a {
     font-weight: bold;
     background: DeepSkyBlue;
     padding: 10px;
+    margin: 10px;
+
+    max-width: 100px;
+    max-width: 200px;
+
+    display: flex;
+    flex: 1 1 0px;
+    flex-grow: 1;
+
+    justify-content: center;
+    align-items: center;
 }
 
 aside.menu a:hover {
