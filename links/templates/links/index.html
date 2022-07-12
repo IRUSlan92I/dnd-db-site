@@ -14,11 +14,9 @@
 <div class="linkspage">
     <h1 class="title">Полезные ссылки</h1>
     <ul>
-        <li><a href="https://drive.google.com/drive/folders/1GgZ5pwoZEv9AwnsgfSLYpTIP0MtFsez_">Записи игр по Драконьему кушу (Google Drive)</a></li>
-        <li><a href="https://disk.yandex.ru/d/A9vQyEO6W_kZVg">Записи игр по Драконьему кушу (Яндекс Диск)</a></li>
-        <li><a href="https://hobbyworld.ru//download/rules/DnD_character_list.pdf">Лист персонажа (документ PDF)</a></li>
-        <li><a href="https://hobbyworld.ru//download/rules/Glossary5E_2.xlsx">Глоссарий (книга Excel)</a></li>
-        <li><a href="../static/ookona.html">Лист персонажа для Ооконы (документ HTML)</a></li>
+        {% for link in links %}
+            <li><a href="{{link.url}}">{{link.text}}</a></li>
+        {% endfor %}
     </ul>
 </div>
 {% endblock %}

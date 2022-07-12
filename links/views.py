@@ -1,5 +1,8 @@
 from django.shortcuts import render
+from .models import Link
 
 
 def index(request):
-    return render(request, 'links/index.html')
+    links = Link.objects.order_by('order')
+
+    return render(request, 'links/index.html', {'links': links})
