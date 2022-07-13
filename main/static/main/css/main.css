@@ -1,0 +1,44 @@
+div.mainpage {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+aside.menu {
+    border: 3px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    margin: 25px;
+}
+
+div.menu {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+aside.menu a {
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    background: DeepSkyBlue;
+    padding: 10px;
+    margin: 10px;
+
+    max-width: 100px;
+    max-width: 200px;
+
+    display: flex;
+    flex: 1 1 0px;
+    flex-grow: 1;
+
+    justify-content: center;
+    align-items: center;
+}
+
+aside.menu a:hover {
+    background: DodgerBlue;
+}

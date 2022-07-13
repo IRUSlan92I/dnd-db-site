@@ -1,0 +1,39 @@
+div.calendarpage {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+table.month, table.month th, table.month td {
+    border: 1px solid white;
+    border-collapse: collapse;
+    padding: 5px;
+    background: gainsboro;
+}
+
+table.month td {
+    text-align: right;
+}
+
+table.month td.current {
+    background: dimgrey;
+    color: white;
+}
+
+table.month th.subtitle {
+    font-style: italic;
+    font-weight: normal;
+}
+
+div.calendar {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+table.month {
+    margin: 10px;
+    width: 350px;
+    max-width: 350px;
+}

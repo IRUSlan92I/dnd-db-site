@@ -1,0 +1,23 @@
+{% extends 'main/pagetemplate.html' %}
+
+{% load static %}
+
+{% block additional_css %}
+<link rel="stylesheet" href="{% static 'links/css/main.css' %}">
+{% endblock %}
+
+{% block pagetitle %}
+Полезные ссылки
+{% endblock %}
+
+{% block content %}
+<div class="linkspage">
+    <h1 class="title">Полезные ссылки</h1>
+    <ul>
+        {% for link in links %}
+            <li><a href="{{link.url}}">{{link.text}}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+
