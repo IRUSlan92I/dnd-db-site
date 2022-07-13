@@ -1,53 +1,32 @@
 <div class="month">
     <table class="month">
         <tr>
-            <th colspan="10" class="title">{{title}}</th>
+            <th colspan="10" class="title">{{month.name}}</th>
         </tr>
-        {% if subtitle %}
-            <th colspan="10" class="subtitle">{{subtitle}}</th>
+        {% if month.folkname %}
+            <th colspan="10" class="subtitle">{{month.folkname}}</th>
         {% endif %}
-        {% if oneday != 1 %}
-        <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
-            <td>6</td>
-            <td>7</td>
-            <td>8</td>
-            <td>9</td>
-            <td>10</td>
-        </tr>
-        <tr>
-            <td>11</td>
-            <td>12</td>
-            <td>13</td>
-            <td>14</td>
-            <td>15</td>
-            <td>16</td>
-            <td>17</td>
-            <td>18</td>
-            {% if title == "Миртул" %}
-            <td class="current">19</td>
-            {% else %}
-            <td>19</td>
-            {% endif %}
 
-            <td>20</td>
-        </tr>
-        <tr>
-            <td>21</td>
-            <td>22</td>
-            <td>23</td>
-            <td>24</td>
-            <td>25</td>
-            <td>26</td>
-            <td>27</td>
-            <td>28</td>
-            <td>29</td>
-            <td>30</td>
-        </tr>
+        {% if not month.is_oneday %}
+            {% for day in month_days %}
+                {% if forloop.counter0|divisibleby:10 %}
+                    <tr>
+                {% endif %}
+
+                {% if year == calendar_data.current_year and month.number == calendar_data.current_month and day == calendar_data.current_day %}
+                    <td class="current">
+                {% else %}
+                    <td>
+                {% endif %}
+
+                <div>{{day}}</div>
+
+                </td>
+
+                {% if forloop.counter|divisibleby:10 %}
+                    </tr>
+                {% endif %}
+            {% endfor %}
         {% endif %}
     </table>
 </div>

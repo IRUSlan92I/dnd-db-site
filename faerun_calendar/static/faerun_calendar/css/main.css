@@ -12,6 +12,10 @@ table.month, table.month th, table.month td {
     background: gainsboro;
 }
 
+table.month th {
+    text-align: center;
+}
+
 table.month td {
     text-align: right;
 }
