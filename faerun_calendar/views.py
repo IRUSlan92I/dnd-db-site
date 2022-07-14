@@ -1,31 +1,39 @@
 from django.shortcuts import render
-from .models import CalendarData
+from django.http import HttpResponse
+from django.http import HttpResponseNotFound
+
+from .models import YearData
 from .models import MonthData
+from .models import DayData
+from .models import CalendarData
+from .models import Event
 
 
-def index(request):
-    def is_leap_year(year) -> bool:
-        if year == 0:
-            return False
-        elif year % 400 == 0:
-            return True
-        elif year % 100 == 0:
-            return False
-        elif year % 4 == 0:
-            return True
-        return False
+def year_page(request, year: int):
+    try:
+        year_data = YearData.objects.get(number=year)
+    except YearData.DoesNotExist:
+        return HttpResponseNotFound("<h1>404 Not Found</h1>")
 
-    calendar_data = CalendarData.objects.first()
     month_data = MonthData.objects.all()
-
-    year = 1492
+    calendar_data = CalendarData.objects.first()
 
     params = {
         'calendar_data': calendar_data,
+        'year_data': year_data,
         'month_data': month_data,
         'month_days': tuple(i+1 for i in range(30)),
-        'year': year,
-        'is_leap_year': is_leap_year(year),
     }
 
     return render(request, 'faerun_calendar/index.html', params)
+
+
+def index(request):
+    calendar_data = CalendarData.objects.first()
+
+    try:
+        current_year = getattr(getattr(CalendarData.objects.first(), 'current_year'), 'number')
+    except AttributeError:
+        current_year = 0
+
+    return year_page(request, current_year)

@@ -13,14 +13,14 @@
 {% block content %}
 <div class="calendarpage">
     <h1 class="title">Календарь</h1>
-    <h2 class="year">{{year}}</h2>
+
+    <h2 class="year">{{year_data.number}}</h2>
     <div class="calendar">
         {% for month in month_data %}
-            {% if month.number != calendar_data.leap_month or is_leap_year %}
-                {% include 'faerun_calendar/month.html' with month=month month_days=month_days %}
+            {% if not month.is_leap_month or year_data.is_leap %}
+                {% include 'faerun_calendar/month.html' with month=month calendar_data=calendar_data month_days=month_days %}
             {% endif %}
         {% endfor %}
     </div>
 </div>
 {% endblock %}
-
