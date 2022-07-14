@@ -39,41 +39,25 @@ class MonthData(models.Model):
         return f'({self.number}, {self.name}, {self.folkname}, {self.is_oneday}, {self.is_leap_month})'
 
 
-class DayData(models.Model):
-    number = models.SmallIntegerField('Number', unique=True, validators=[
+class CalendarData(models.Model):
+    current_day = models.SmallIntegerField('Number', unique=True, validators=[
+        MinValueValidator(1),
+        MaxValueValidator(30),
+    ])
+    current_month = models.ForeignKey(MonthData, on_delete=models.CASCADE)
+    current_year = models.ForeignKey(YearData, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'({self.current_day}, {self.current_month}, {self.current_year})'
+
+
+class Event(models.Model):
+    day = models.SmallIntegerField('Number', unique=True, validators=[
         MinValueValidator(1),
         MaxValueValidator(30),
     ])
     month = models.ForeignKey(MonthData, on_delete=models.CASCADE)
     year = models.ForeignKey(YearData, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f'({self.number, self.month})'
-
-
-class CalendarData(models.Model):
-    current_day = models.ForeignKey(DayData, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f'({self.current_day})'
-
-    @property
-    def current_month(self):
-        try:
-            return getattr(self.current_day, 'month')
-        except AttributeError:
-            return None
-
-    @property
-    def current_year(self):
-        try:
-            return getattr(self.current_day, 'year')
-        except AttributeError:
-            return None
-
-
-class Event(models.Model):
-    day = models.ForeignKey(DayData, on_delete=models.CASCADE)
     time = models.TimeField('Time')
     title = models.CharField('Title', max_length=250)
     description = models.TextField('Description', max_length=2500)

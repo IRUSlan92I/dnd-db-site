@@ -4,7 +4,6 @@ from django.http import HttpResponseNotFound
 
 from .models import YearData
 from .models import MonthData
-from .models import DayData
 from .models import CalendarData
 from .models import Event
 
