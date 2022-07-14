@@ -8,20 +8,26 @@ from .models import CalendarData
 from .models import Event
 
 
+def day_page(request, year: int, month: int, day: int):
+    return HttpResponse(f'{year}.{month}.{day}')
+
+
 def year_page(request, year: int):
     try:
         year_data = YearData.objects.get(number=year)
     except YearData.DoesNotExist:
-        return HttpResponseNotFound("<h1>404 Not Found</h1>")
+        return HttpResponseNotFound('<h1>404 Not Found</h1>')
 
     month_data = MonthData.objects.all()
     calendar_data = CalendarData.objects.first()
+    events = Event.objects.all()
 
     params = {
         'calendar_data': calendar_data,
         'year_data': year_data,
         'month_data': month_data,
         'month_days': tuple(i+1 for i in range(30)),
+        'events': events,
     }
 
     return render(request, 'faerun_calendar/index.html', params)

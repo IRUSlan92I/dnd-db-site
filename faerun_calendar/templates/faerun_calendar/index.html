@@ -18,7 +18,7 @@
     <div class="calendar">
         {% for month in month_data %}
             {% if not month.is_leap_month or year_data.is_leap %}
-                {% include 'faerun_calendar/month.html' with month=month calendar_data=calendar_data month_days=month_days %}
+                {% include 'faerun_calendar/month.html' with month=month calendar_data=calendar_data month_days=month_days events=events %}
             {% endif %}
         {% endfor %}
     </div>

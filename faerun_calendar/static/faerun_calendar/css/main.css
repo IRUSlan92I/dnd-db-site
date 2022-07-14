@@ -26,12 +26,20 @@ table.month td {
 
 table.month td.current {
     background: dimgrey;
-    color: white;
 }
 
 table.month th.subtitle {
     font-style: italic;
     font-weight: normal;
+}
+
+table.month td a {
+    text-decoration: none;
+    color: black;
+}
+
+table.month td.current a {
+    color: white;
 }
 
 div.calendar {
