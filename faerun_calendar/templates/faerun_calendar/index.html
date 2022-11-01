@@ -18,6 +18,8 @@
     {% elif type == 'day' %}
         <h1 class="title">Календарь — События</h1>
         <h2 class="year">Год {{year_data.number}}, {{month_data.name}}, день {{day}}-й</h2>
+    {% elif type == 'error' %}
+        <h1 class="title">Календарь — Ошибка</h1>
     {% endif %}
 
     <div class="calendar">
@@ -29,7 +31,7 @@
             {% endfor %}
         {% elif type == 'day' %}
             {% if events.count == 0 %}
-                <p>Событий нет</p>
+                <p class="calendar-info">Событий нет</p>
             {% else %}
                 {% for event in events %}
                     <div class="event">
@@ -38,6 +40,14 @@
                         <p class="event-description">{{event.description}}</p>
                     </div>
                 {% endfor %}
+            {% endif %}
+        {% elif type == 'error' %}
+            {% if error_type == 'year' %}
+                <p class="calendar-error">Неверный год</p>
+            {% elif error_type == 'month' %}
+                <p class="calendar-error">Неверный месяц</p>
+            {% elif error_type == 'day' %}
+                <p class="calendar-error">Неверный день</p>
             {% endif %}
         {% endif %}
     </div>

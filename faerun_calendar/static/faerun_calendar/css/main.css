@@ -84,3 +84,12 @@ p.event-description {
     margin: 0px;
     padding: 0px;
 }
+
+p.calendar-error {
+    color: Crimson;
+    font-size: 200%;
+}
+
+p.calendar-info {
+    font-size: 200%;
+}
