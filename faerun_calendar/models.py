@@ -52,7 +52,7 @@ class CalendarData(models.Model):
 
 
 class Event(models.Model):
-    day = models.SmallIntegerField('Number', unique=True, validators=[
+    day = models.SmallIntegerField('Number', validators=[
         MinValueValidator(1),
         MaxValueValidator(30),
     ])

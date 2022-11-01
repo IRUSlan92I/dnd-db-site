@@ -12,15 +12,34 @@
 
 {% block content %}
 <div class="calendarpage">
-    <h1 class="title">Календарь</h1>
+    {% if type == 'year' %}
+        <h1 class="title">Календарь</h1>
+        <h2 class="year">{{year_data.number}}</h2>
+    {% elif type == 'day' %}
+        <h1 class="title">Календарь — События</h1>
+        <h2 class="year">Год {{year_data.number}}, {{month_data.name}}, день {{day}}-й</h2>
+    {% endif %}
 
-    <h2 class="year">{{year_data.number}}</h2>
     <div class="calendar">
-        {% for month in month_data %}
-            {% if not month.is_leap_month or year_data.is_leap %}
-                {% include 'faerun_calendar/month.html' with month=month calendar_data=calendar_data month_days=month_days events=events %}
+        {% if type == 'year' %}
+            {% for month in month_data %}
+                {% if not month.is_leap_month or year_data.is_leap %}
+                    {% include 'faerun_calendar/month.html' with month=month calendar_data=calendar_data month_days=month_days events=events %}
+                {% endif %}
+            {% endfor %}
+        {% elif type == 'day' %}
+            {% if events.count == 0 %}
+                <p>Событий нет</p>
+            {% else %}
+                {% for event in events %}
+                    <div class="event">
+                        <div class="event-time">{{event.time}}</div>
+                        <div class="event-title">{{event.title}}</div>
+                        <p class="event-description">{{event.description}}</p>
+                    </div>
+                {% endfor %}
             {% endif %}
-        {% endfor %}
+        {% endif %}
     </div>
 </div>
 {% endblock %}
