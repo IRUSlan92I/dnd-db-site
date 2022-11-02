@@ -15,33 +15,42 @@
     {% if type == 'year' %}
         <h1 class="title">Календарь</h1>
         <h2 class="year">{{year_data.number}}</h2>
-    {% elif type == 'day' %}
-        <h1 class="title">Календарь — События</h1>
-        <h2 class="year">Год {{year_data.number}}, {{month_data.name}}, день {{day}}-й</h2>
-    {% elif type == 'error' %}
-        <h1 class="title">Календарь — Ошибка</h1>
-    {% endif %}
 
-    <div class="calendar">
-        {% if type == 'year' %}
+        <div class="calendar">
             {% for month in month_data %}
                 {% if not month.is_leap_month or year_data.is_leap %}
                     {% include 'faerun_calendar/month.html' with month=month calendar_data=calendar_data month_days=month_days events=events %}
                 {% endif %}
             {% endfor %}
-        {% elif type == 'day' %}
+        </div>
+    {% elif type == 'day' %}
+        <h1 class="title">Календарь — События</h1>
+        <h2 class="year">Год {{year_data.number}}, {{month_data.name}}, день {{day}}-й</h2>
+
+        <div class="calendar-events">
             {% if events.count == 0 %}
                 <p class="calendar-info">Событий нет</p>
             {% else %}
                 {% for event in events %}
-                    <div class="event">
+                    {% if event.is_suggested %}
+                        <div class="event-suggested">
+                    {% elif event.is_only_for_gm %}
+                        <div class="event-gm">
+                    {% else %}
+                        <div class="event">
+                    {% endif %}
+
                         <div class="event-time">{{event.time}}</div>
                         <div class="event-title">{{event.title}}</div>
                         <p class="event-description">{{event.description}}</p>
                     </div>
                 {% endfor %}
             {% endif %}
-        {% elif type == 'error' %}
+        </div>
+    {% elif type == 'error' %}
+        <h1 class="title">Календарь — Ошибка</h1>
+
+        <div class="calendar-error">
             {% if error_type == 'year' %}
                 <p class="calendar-error">Неверный год</p>
             {% elif error_type == 'month' %}
@@ -49,7 +58,7 @@
             {% elif error_type == 'day' %}
                 <p class="calendar-error">Неверный день</p>
             {% endif %}
-        {% endif %}
-    </div>
+        </div>
+    {% endif %}
 </div>
 {% endblock %}

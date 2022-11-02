@@ -42,7 +42,9 @@ table.month td.current a {
     color: white;
 }
 
-div.calendar {
+div.calendar,
+div.calendar-events,
+div.calendar-error {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
@@ -54,12 +56,26 @@ table.month {
     max-width: 350px;
 }
 
-div.event {
+div.event,
+div.event-gm,
+div.event-suggested {
     border: 1px solid black;
     padding: 20px;
     margin: 20px;
     border-radius: 10px;
     width: 100%;
+}
+
+div.event {
+    border: 1px solid black;
+}
+
+div.event-gm {
+    border: 2px solid BlueViolet;
+}
+
+div.event-suggested {
+    border: 2px solid crimson;
 }
 
 div.event-time {
@@ -86,7 +102,7 @@ p.event-description {
 }
 
 p.calendar-error {
-    color: Crimson;
+    color: crimson;
     font-size: 200%;
 }
 

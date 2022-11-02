@@ -61,6 +61,8 @@ class Event(models.Model):
     time = models.TimeField('Time')
     title = models.CharField('Title', max_length=250)
     description = models.TextField('Description', max_length=2500)
+    is_suggested = models.BooleanField('IsSuggested')
+    is_only_for_gm = models.BooleanField('IsOnlyForGm')
 
     def __str__(self):
         return f'({self.day}, {self.time}, {self.title})'

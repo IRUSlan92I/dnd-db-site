@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from django.http import HttpResponseNotFound
 
 from .models import YearData
@@ -10,6 +9,9 @@ from .models import Event
 
 def day_page(request, year: int, month: int, day: int):
     params = None
+
+    select_suggested = False
+    select_only_for_gm = False
 
     if not params:
         try:
@@ -37,12 +39,6 @@ def day_page(request, year: int, month: int, day: int):
 
     if not params:
         try:
-            events = Event.objects.filter(year=year_id, month=month_id, day=day)
-        except Event.DoesNotExist:
-            params = {'type': 'error', 'error_type': 'events'}
-
-    if not params:
-        try:
             is_leap = getattr(year_data, 'is_leap')
         except AttributeError:
             params = {'type': 'error', 'error_type': 'year'}
@@ -54,6 +50,14 @@ def day_page(request, year: int, month: int, day: int):
             else:
                 if not is_leap and is_leap_month:
                     params = {'type': 'error', 'error_type': 'month'}
+
+    if not params:
+        try:
+            events = Event.objects.filter(year=year_id, month=month_id, day=day,
+                                          is_suggested=select_suggested, is_only_for_gm=select_only_for_gm
+                                          ).order_by('time')
+        except Event.DoesNotExist:
+            params = {'type': 'error', 'error_type': 'events'}
 
     if not params:
         try:
