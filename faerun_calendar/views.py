@@ -86,7 +86,7 @@ def year_page(request, year: int):
     except YearData.DoesNotExist:
         return HttpResponseNotFound('<h1>404 Not Found</h1>')
 
-    month_data = MonthData.objects.all()
+    month_data = MonthData.objects.all().order_by('number')
     calendar_data = CalendarData.objects.first()
     events = Event.objects.all()
 
