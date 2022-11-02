@@ -66,3 +66,4 @@ class Event(models.Model):
 
     def __str__(self):
         return f'({self.day}, {self.time}, {self.title})'
+

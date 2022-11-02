@@ -109,3 +109,4 @@ def index(request):
         current_year = 0
 
     return year_page(request, current_year)
+
