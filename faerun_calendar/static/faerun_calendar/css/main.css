@@ -7,6 +7,9 @@ div.calendarpage {
 
 h2.year {
     text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid black;
+    margin-bottom: 20px;
 }
 
 table.month, table.month th, table.month td {
@@ -33,7 +36,7 @@ table.month th.subtitle {
     font-weight: normal;
 }
 
-table.month td a {
+table.month a {
     text-decoration: none;
     color: black;
 }
@@ -42,12 +45,19 @@ table.month td.current a {
     color: white;
 }
 
-div.calendar,
-div.calendar-events,
-div.calendar-error {
+div.calendar {
+    column-width: 350px;
+}
+
+div.calendar-events {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
+}
+
+div.calendar-events > p,
+div.calendar-error > p {
+    text-align: center;
 }
 
 table.month {

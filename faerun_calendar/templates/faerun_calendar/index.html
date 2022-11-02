@@ -14,7 +14,7 @@
 <div class="calendarpage">
     {% if type == 'year' %}
         <h1 class="title">Календарь</h1>
-        <h2 class="year">{{year_data.number}}</h2>
+        <h2 class="year">Год {{year_data.number}}-й</h2>
 
         <div class="calendar">
             {% for month in month_data %}
@@ -25,7 +25,7 @@
         </div>
     {% elif type == 'day' %}
         <h1 class="title">Календарь — События</h1>
-        <h2 class="year">Год {{year_data.number}}, {{month_data.name}}, день {{day}}-й</h2>
+        <h2 class="year">Год {{year_data.number}}-й, {{month_data.name}}{% if not month_data.is_oneday %}, день {{day}}-й{% endif %}</h2>
 
         <div class="calendar-events">
             {% if events.count == 0 %}
