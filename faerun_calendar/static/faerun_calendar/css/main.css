@@ -5,11 +5,22 @@ div.calendarpage {
     border-radius: 20px;
 }
 
+h2.year {
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid black;
+    margin-bottom: 20px;
+}
+
 table.month, table.month th, table.month td {
     border: 1px solid white;
     border-collapse: collapse;
     padding: 5px;
     background: gainsboro;
+}
+
+table.month th {
+    text-align: center;
 }
 
 table.month td {
@@ -18,7 +29,6 @@ table.month td {
 
 table.month td.current {
     background: dimgrey;
-    color: white;
 }
 
 table.month th.subtitle {
@@ -26,14 +36,86 @@ table.month th.subtitle {
     font-weight: normal;
 }
 
+table.month a {
+    text-decoration: none;
+    color: black;
+}
+
+table.month td.current a {
+    color: white;
+}
+
 div.calendar {
+    column-width: 350px;
+}
+
+div.calendar-events {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
+}
+
+div.calendar-events > p,
+div.calendar-error > p {
+    text-align: center;
 }
 
 table.month {
     margin: 10px;
     width: 350px;
     max-width: 350px;
+}
+
+div.event,
+div.event-gm,
+div.event-suggested {
+    border: 1px solid black;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+div.event {
+    border: 1px solid black;
+}
+
+div.event-gm {
+    border: 2px solid BlueViolet;
+}
+
+div.event-suggested {
+    border: 2px solid crimson;
+}
+
+div.event-time {
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 3px 5px;
+    margin-right: 15px;
+    float: left;
+    font-weight: bold;
+    background: DeepSkyBlue;
+    font-size: 150%;
+}
+
+div.event-title {
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 200%;
+    margin-bottom: 10px;
+}
+
+p.event-description {
+    margin: 0px;
+    padding: 0px;
+}
+
+p.calendar-error {
+    color: crimson;
+    font-size: 200%;
+}
+
+p.calendar-info {
+    font-size: 200%;
 }
