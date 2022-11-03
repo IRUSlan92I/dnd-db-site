@@ -47,6 +47,8 @@ table.month td.current a {
 
 div.calendar {
     column-width: 350px;
+    column-rule: 1px solid black;
+    column-gap: 25px;
 }
 
 div.calendar-events {
@@ -55,13 +57,18 @@ div.calendar-events {
     justify-content: space-around;
 }
 
+div.month {
+    break-inside: avoid;
+}
+
 div.calendar-events > p,
 div.calendar-error > p {
     text-align: center;
 }
 
 table.month {
-    margin: 10px;
+    margin: auto;
+    margin-bottom: 15px;
     width: 350px;
     max-width: 350px;
 }
