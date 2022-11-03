@@ -81,10 +81,6 @@ def day_page(request, year: int, month: int, day: int):
     return render(request, 'faerun_calendar/index.html', params)
 
 
-def month_page(request, year: int, month: int):
-    return year_page(request, year, root='month')
-
-
 def year_page(request, year: int, root: str = None):
     if not root:
         root = 'year'
@@ -120,5 +116,5 @@ def index(request):
     except AttributeError:
         current_year = 0
 
-    return year_page(request, current_year)
+    return year_page(request, current_year, root='calendar')
 
