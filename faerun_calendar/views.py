@@ -71,6 +71,7 @@ def day_page(request, year: int, month: int, day: int):
     if not params:
         params = {
             'type': 'day',
+            'root': 'calendar',
             'year_data': year_data,
             'month_data': month_data,
             'day': day,
@@ -80,7 +81,14 @@ def day_page(request, year: int, month: int, day: int):
     return render(request, 'faerun_calendar/index.html', params)
 
 
-def year_page(request, year: int):
+def month_page(request, year: int, month: int):
+    return year_page(request, year, root='month')
+
+
+def year_page(request, year: int, root: str = None):
+    if not root:
+        root = 'year'
+
     params = None
 
     try:
@@ -95,6 +103,7 @@ def year_page(request, year: int):
 
         params = {
             'type': 'year',
+            'root': root,
             'calendar_data': calendar_data,
             'year_data': year_data,
             'month_data': month_data,
