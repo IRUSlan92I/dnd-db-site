@@ -81,23 +81,26 @@ def day_page(request, year: int, month: int, day: int):
 
 
 def year_page(request, year: int):
+    params = None
+
     try:
         year_data = YearData.objects.get(number=year)
     except YearData.DoesNotExist:
-        return HttpResponseNotFound('<h1>404 Not Found</h1>')
+        params = {'type': 'error', 'error_type': 'year'}
 
-    month_data = MonthData.objects.all().order_by('number')
-    calendar_data = CalendarData.objects.first()
-    events = Event.objects.all()
+    if not params:
+        month_data = MonthData.objects.all().order_by('number')
+        calendar_data = CalendarData.objects.first()
+        events = Event.objects.all()
 
-    params = {
-        'type': 'year',
-        'calendar_data': calendar_data,
-        'year_data': year_data,
-        'month_data': month_data,
-        'month_days': tuple(i+1 for i in range(30)),
-        'events': events,
-    }
+        params = {
+            'type': 'year',
+            'calendar_data': calendar_data,
+            'year_data': year_data,
+            'month_data': month_data,
+            'month_days': tuple(i+1 for i in range(30)),
+            'events': events,
+        }
 
     return render(request, 'faerun_calendar/index.html', params)
 
