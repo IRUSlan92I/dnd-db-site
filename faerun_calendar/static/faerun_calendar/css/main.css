@@ -104,6 +104,8 @@ div.event-time {
     font-weight: bold;
     background: DeepSkyBlue;
     font-size: 150%;
+    min-width: 100px;
+    text-align: center;
 }
 
 div.event-title {
