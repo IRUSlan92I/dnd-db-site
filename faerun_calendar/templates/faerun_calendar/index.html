@@ -17,10 +17,8 @@
         <h2 class="year">Год {{year_data.number}}-й</h2>
 
         <div class="calendar">
-            {% for month in month_data %}
-                {% if not month.is_leap_month or year_data.is_leap %}
-                    {% include 'faerun_calendar/month.html' with month=month calendar_data=calendar_data month_days=month_days events=events %}
-                {% endif %}
+            {% for month in months %}
+                {% include 'faerun_calendar/month.html' with month=month %}
             {% endfor %}
         </div>
     {% elif type == 'day' %}
@@ -57,6 +55,8 @@
                 <p class="calendar-error">Неверный месяц</p>
             {% elif error_type == 'day' %}
                 <p class="calendar-error">Неверный день</p>
+            {% elif error_type == 'unknown' %}
+                <p class="calendar-error">Неизвестная ошибка</p>
             {% endif %}
         </div>
     {% endif %}

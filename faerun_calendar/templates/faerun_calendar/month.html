@@ -14,23 +14,32 @@
         {% endif %}
 
         {% if not month.is_oneday %}
-            {% for day in month_days %}
+            {% for day in month.days %}
                 {% if forloop.counter0|divisibleby:10 %}
                     <tr>
                 {% endif %}
 
-                {% if day == calendar_data.current_day and year_data == calendar_data.current_year and month == calendar_data.current_month %}
-                    <td class="current">
+                {% if day.event_counts %}
+                    <td class="with_events">
                 {% else %}
                     <td>
                 {% endif %}
-
-                {% if root == 'calendar' %}
-                <a href="{{year_data.number}}/{{month.number}}/{{day}}">{{day}}</a>
-                {% elif root == 'year' %}
-                <a href="{{month.number}}/{{day}}">{{day}}</a>
-                {% elif root == 'month' %}
-                <a href="{{day}}">{{day}}</a>
+                {% if day.number == calendar_data.current_day and month.id == calendar_data.current_month.id and year_data.id == calendar_data.current_year.id %}
+                    {% if root == 'calendar' %}
+                        <a class="current_day" href="{{year_data.number}}/{{month.number}}/{{day.number}}">{{day.number}}</a>
+                    {% elif root == 'year' %}
+                        <a class="current_day" href="{{month.number}}/{{day.number}}">{{day.number}}</a>
+                    {% elif root == 'month' %}
+                        <a class="current_day" href="{{day.number}}">{{day.number}}</a>
+                    {% endif %}
+                {% else %}
+                    {% if root == 'calendar' %}
+                        <a href="{{year_data.number}}/{{month.number}}/{{day.number}}">{{day.number}}</a>
+                    {% elif root == 'year' %}
+                        <a href="{{month.number}}/{{day.number}}">{{day.number}}</a>
+                    {% elif root == 'month' %}
+                        <a href="{{day.number}}">{{day.number}}</a>
+                    {% endif %}
                 {% endif %}
 
                 </td>

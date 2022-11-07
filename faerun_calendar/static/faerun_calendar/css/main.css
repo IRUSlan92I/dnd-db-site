@@ -15,19 +15,20 @@ h2.year {
 table.month, table.month th, table.month td {
     border: 1px solid white;
     border-collapse: collapse;
-    padding: 5px;
     background: gainsboro;
 }
 
 table.month th {
     text-align: center;
+    padding: 5px;
 }
 
 table.month td {
-    text-align: right;
+    text-align: center;
+    padding: 5px 0px;
 }
 
-table.month td.current {
+table.month td.with_events {
     background: dimgrey;
 }
 
@@ -39,9 +40,16 @@ table.month th.subtitle {
 table.month a {
     text-decoration: none;
     color: black;
+    padding: 3px;
 }
 
-table.month td.current a {
+a.current_day {
+    border-radius: 3px;
+    background: DeepSkyBlue;
+    color: black;
+}
+
+table.month td.with_events a {
     color: white;
 }
 
