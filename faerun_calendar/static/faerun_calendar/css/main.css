@@ -40,13 +40,13 @@ table.month th.subtitle {
 table.month a {
     text-decoration: none;
     color: #000000;
-    padding: 3px;
+    padding: 5px;
 }
 
-a.current_day {
-    border-radius: 3px;
-    background: #696969;
-    color: #fefefe;
+table.month a.current_day {
+    border: 3px solid #dc143c;
+    padding: 2px;
+    border-radius: 50%;
 }
 
 table.month td.with_events a {
