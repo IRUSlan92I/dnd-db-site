@@ -60,9 +60,9 @@ div.calendar {
 }
 
 div.calendar-events {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
+    column-width: 725px;
+    column-rule: 1px solid black;
+    column-gap: 25px;
 }
 
 div.month {
@@ -86,9 +86,11 @@ div.event-gm,
 div.event-suggested {
     border: 1px solid black;
     padding: 20px;
-    margin: 20px;
+    margin: auto;
+    margin-bottom: 15px;
     border-radius: 10px;
-    width: 100%;
+    max-width: 700px;
+    break-inside: avoid;
 }
 
 div.event {
@@ -135,4 +137,9 @@ p.calendar-error {
 
 p.calendar-info {
     font-size: 200%;
+}
+
+body > div {
+    max-width: 1600px;
+    margin: auto;
 }

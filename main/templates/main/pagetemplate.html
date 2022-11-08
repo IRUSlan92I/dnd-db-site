@@ -18,21 +18,23 @@
     <link rel="apple-touch-icon" href="{%  static 'iconbig.png' %}">
 </head>
 <body>
-    <aside class="menu">
-        <div class="menu">
-            <a class="menuitem" href="/">
-                Главная
-            </a>
-            <a class="menuitem" href="/calendar">
-                Календарь
-            </a>
-            <a class="menuitem" href="/links">
-                Полезные ссылки
-            </a>
-        </div>
-    </aside>
+    <div class="page">
+        <aside class="menu">
+            <div class="menu">
+                <a class="menuitem" href="/">
+                    Главная
+                </a>
+                <a class="menuitem" href="/calendar">
+                    Календарь
+                </a>
+                <a class="menuitem" href="/links">
+                    Полезные ссылки
+                </a>
+            </div>
+        </aside>
 
-    {% block content %}
-    {% endblock %}
+        {% block content %}
+        {% endblock %}
+    </div>
 </body>
 </html>
