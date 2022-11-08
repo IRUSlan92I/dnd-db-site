@@ -1,17 +1,17 @@
 div.mainpage {
     margin: 10px;
     padding: 10px;
-    border: 1px solid black;
+    border: 3px solid #000000;
     border-radius: 20px;
 }
 
 aside.menu {
-    border: 3px solid black;
+    border: 3px solid #000000;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     padding: 15px;
-    margin: 25px;
+    margin: 10px;
 }
 
 div.menu {
@@ -22,9 +22,9 @@ div.menu {
 aside.menu a {
     border-radius: 10px;
     text-decoration: none;
-    color: black;
+    color: #000000;
     font-weight: bold;
-    background: DeepSkyBlue;
+    background: #00bfff;
     padding: 10px;
     margin: 10px;
 
@@ -37,8 +37,38 @@ aside.menu a {
 
     justify-content: center;
     align-items: center;
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                          supported by Chrome, Edge, Opera and Firefox */
 }
 
 aside.menu a:hover {
-    background: DodgerBlue;
+    background: #00a0e0;
+    margin-top: 11px;
+    margin-bottom: 9px;
 }
+
+aside.menu a:active {
+    background: #0080c0;
+    margin-top: 13px;
+    margin-bottom: 7px;
+}
+
+body {
+    background: #555555;
+}
+
+body > div {
+    max-width: 1600px;
+    margin: auto;
+}
+
+body > div > * {
+    background: #fefefe;
+}
+

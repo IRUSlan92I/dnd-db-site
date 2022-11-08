@@ -1,21 +1,21 @@
 div.calendarpage {
     margin: 10px;
     padding: 10px;
-    border: 1px solid black;
+    border: 3px solid #000000;
     border-radius: 20px;
 }
 
 h2.year {
     text-align: center;
     padding-bottom: 10px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #000000;
     margin-bottom: 20px;
 }
 
 table.month, table.month th, table.month td {
-    border: 1px solid white;
+    border: 1px solid #fefefe;
     border-collapse: collapse;
-    background: gainsboro;
+    background: #dcdcdc;
 }
 
 table.month th {
@@ -29,7 +29,7 @@ table.month td {
 }
 
 table.month td.with_events {
-    background: dimgrey;
+    background: #0080c0;
 }
 
 table.month th.subtitle {
@@ -39,29 +39,29 @@ table.month th.subtitle {
 
 table.month a {
     text-decoration: none;
-    color: black;
+    color: #000000;
     padding: 3px;
 }
 
 a.current_day {
     border-radius: 3px;
-    background: DeepSkyBlue;
-    color: black;
+    background: #696969;
+    color: #fefefe;
 }
 
 table.month td.with_events a {
-    color: white;
+    color: #fefefe;
 }
 
 div.calendar {
     column-width: 350px;
-    column-rule: 1px solid black;
+    column-rule: 1px solid #000000;
     column-gap: 25px;
 }
 
 div.calendar-events {
     column-width: 725px;
-    column-rule: 1px solid black;
+    column-rule: 1px solid #000000;
     column-gap: 25px;
 }
 
@@ -84,38 +84,44 @@ table.month {
 div.event,
 div.event-gm,
 div.event-suggested {
-    border: 1px solid black;
+    border: 1px solid #000000;
     padding: 20px;
     margin: auto;
     margin-bottom: 15px;
     border-radius: 10px;
     max-width: 700px;
     break-inside: avoid;
+    background: #f0f0f0;
 }
 
 div.event {
-    border: 1px solid black;
+    border: 1px solid #000000;
 }
 
 div.event-gm {
-    border: 2px solid BlueViolet;
+    border: 2px solid #0080c0;
 }
 
 div.event-suggested {
-    border: 2px solid crimson;
+    border: 2px solid #dc143c;
 }
 
 div.event-time {
-    border: 1px solid black;
-    border-radius: 3px;
+    border: 1px solid #000000;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
     padding: 3px 5px;
     margin-right: 15px;
+    margin-left: -21px;
+    margin-top: -21px;
     float: left;
     font-weight: bold;
-    background: DeepSkyBlue;
+    background: #696969;
+    color: #fefefe;
     font-size: 150%;
     min-width: 100px;
     text-align: center;
+
 }
 
 div.event-title {
@@ -123,6 +129,7 @@ div.event-title {
     text-decoration: underline;
     font-size: 200%;
     margin-bottom: 10px;
+    margin-top: -21px;
 }
 
 p.event-description {
@@ -131,7 +138,7 @@ p.event-description {
 }
 
 p.calendar-error {
-    color: crimson;
+    color: #dc143c;
     font-size: 200%;
 }
 
@@ -139,7 +146,3 @@ p.calendar-info {
     font-size: 200%;
 }
 
-body > div {
-    max-width: 1600px;
-    margin: auto;
-}
