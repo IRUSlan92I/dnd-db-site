@@ -5,6 +5,35 @@ div.calendarpage {
     border-radius: 20px;
 }
 
+a.previous_year,
+a.next_year {
+    margin-top: 0px;
+    margin-bottom: 20px;
+    max-width: 300px;
+}
+
+a.previous_year:hover,
+a.next_year:hover {
+    background: #00a0e0;
+    margin-top: 1px;
+    margin-bottom: 19px;
+}
+
+a.previous_year:active,
+a.next_year:active {
+    background: #0080c0;
+    margin-top: 3px;
+    margin-bottom: 17px;
+}
+
+a.previous_year {
+    float: left;
+}
+
+a.next_year {
+    float: right;
+}
+
 h2.year {
     text-align: center;
     padding-bottom: 10px;

@@ -10,7 +10,7 @@ class YearData(models.Model):
     ])
 
     @property
-    def is_leap(self):
+    def is_leap(self) -> bool:
         if self.number == 0:
             return False
         elif self.number % 400 == 0:
@@ -21,7 +21,15 @@ class YearData(models.Model):
             return True
         return False
 
-    def __str__(self):
+    @property
+    def next_year(self):
+        return YearData.objects.filter(number__gt=self.number).order_by('number').first()
+
+    @property
+    def previous_year(self):
+        return YearData.objects.filter(number__lt=self.number).order_by('number').last()
+
+    def __str__(self) -> str:
         return f'({self.number}, {self.is_leap})'
 
 
@@ -35,7 +43,7 @@ class MonthData(models.Model):
     is_oneday = models.BooleanField('IsOneday')
     is_leap_month = models.BooleanField('IsLeapMonth')
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f'({self.number}, {self.name}, {self.folkname}, {self.is_oneday}, {self.is_leap_month})'
 
 
@@ -47,7 +55,7 @@ class CalendarData(models.Model):
     current_month = models.ForeignKey(MonthData, on_delete=models.CASCADE)
     current_year = models.ForeignKey(YearData, on_delete=models.CASCADE)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f'({self.current_day}, {self.current_month}, {self.current_year})'
 
 
@@ -64,6 +72,6 @@ class Event(models.Model):
     is_suggested = models.BooleanField('IsSuggested')
     is_only_for_gm = models.BooleanField('IsOnlyForGm')
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f'({self.day}, {self.time}, {self.title})'
 

@@ -19,7 +19,7 @@ div.menu {
     flex-flow: row wrap;
 }
 
-aside.menu a {
+a.button {
     border-radius: 10px;
     text-decoration: none;
     color: #000000;
@@ -28,7 +28,6 @@ aside.menu a {
     padding: 10px;
     margin: 10px;
 
-    max-width: 100px;
     max-width: 200px;
 
     display: flex;
@@ -47,13 +46,13 @@ aside.menu a {
                           supported by Chrome, Edge, Opera and Firefox */
 }
 
-aside.menu a:hover {
+a.button:hover {
     background: #00a0e0;
     margin-top: 11px;
     margin-bottom: 9px;
 }
 
-aside.menu a:active {
+a.button:active {
     background: #0080c0;
     margin-top: 13px;
     margin-bottom: 7px;

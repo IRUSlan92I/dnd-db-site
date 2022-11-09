@@ -14,6 +14,14 @@
 <div class="calendarpage">
     {% if type == 'year' %}
         <h1 class="title">Календарь</h1>
+
+        {% if root == 'calendar' %}
+            {% if year_data.previous_year %} <a draggable="false" class="button previous_year" href="{{year_data.previous_year.number}}">Предыдущий год ({{year_data.previous_year.number}}-й)</a> {% endif %}
+            {% if year_data.next_year %} <a draggable="false" class="button next_year" href="{{year_data.next_year.number}}">Следующий год ({{year_data.next_year.number}}-й)</a> {% endif %}
+        {% elif root == 'year' %}
+            {% if year_data.previous_year %} <a draggable="false" class="button previous_year" href="../{{year_data.previous_year.number}}">Предыдущий год ({{year_data.previous_year.number}}-й)</a> {% endif %}
+            {% if year_data.next_year %} <a draggable="false" class="button next_year" href="../{{year_data.next_year.number}}">Следующий год ({{year_data.next_year.number}}-й)</a> {% endif %}
+        {% endif %}
         <h2 class="year">Год {{year_data.number}}-й</h2>
 
         <div class="calendar">
@@ -23,6 +31,7 @@
         </div>
     {% elif type == 'day' %}
         <h1 class="title">Календарь — События</h1>
+
         <h2 class="year">Год {{year_data.number}}-й, {{month_data.name}}{% if not month_data.is_oneday %}, день {{day}}-й{% endif %}</h2>
 
         <div class="calendar-events">
