@@ -28,6 +28,10 @@ a.button {
     padding: 10px;
     margin: 10px;
 
+    transition: padding 0.3s;
+    transition: margin 0.3s;
+    transition: background 0.3s;
+
     max-width: 200px;
 
     display: flex;
@@ -79,6 +83,10 @@ body > div > * {
     font-size: 2em;
     text-decoration: none;
     margin: 3px 0px;
+
+    transition: padding 0.3s;
+    transition: margin 0.3s;
+    transition: color 0.3s;
 }
 
 .arrow:before, .arrow:after {
@@ -91,6 +99,10 @@ body > div > * {
     position: absolute;
     right: 0;
     width: 1em;
+
+    transition: padding 0.3s;
+    transition: margin 0.3s;
+    transition: background 0.3s;
 }
 
 .arrow.left:before, .arrow.left:after {

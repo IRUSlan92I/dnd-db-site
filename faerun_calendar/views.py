@@ -81,6 +81,10 @@ def day_page(request, year: int, month: int, day: int):
     return render(request, 'faerun_calendar/index.html', params)
 
 
+def month_page(request, year: int, month: int):
+    return HttpResponseRedirect(f'../../{year}')
+
+
 def year_page(request, year: int):
     params = None
 
