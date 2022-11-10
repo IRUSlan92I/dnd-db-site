@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponseNotFound
+from django.http import HttpResponseRedirect
 
 from .models import YearData
 from .models import MonthData
@@ -71,7 +71,7 @@ def day_page(request, year: int, month: int, day: int):
     if not params:
         params = {
             'type': 'day',
-            'root': 'calendar',
+            'root': '',
             'year_data': year_data,
             'month_data': month_data,
             'day': day,
@@ -81,10 +81,7 @@ def day_page(request, year: int, month: int, day: int):
     return render(request, 'faerun_calendar/index.html', params)
 
 
-def year_page(request, year: int, root: str = None):
-    if not root:
-        root = 'year'
-
+def year_page(request, year: int):
     params = None
 
     try:
@@ -125,7 +122,7 @@ def year_page(request, year: int, root: str = None):
 
             params = {
                 'type': 'year',
-                'root': root,
+                'root': '../',
                 'calendar_data': calendar_data,
                 'year_data': year_data,
                 'months': months,
@@ -142,5 +139,4 @@ def index(request):
     except AttributeError:
         current_year = 0
 
-    return year_page(request, current_year, root='calendar')
-
+    return HttpResponseRedirect(f'{current_year}')

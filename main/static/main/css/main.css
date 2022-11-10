@@ -71,3 +71,78 @@ body > div > * {
     background: #fefefe;
 }
 
+.arrow {
+    display: block;
+    position: relative;
+    color: #00bfff;
+    font-family: Arial sans-serif;
+    font-size: 2em;
+    text-decoration: none;
+    margin: 3px 0px;
+}
+
+.arrow:before, .arrow:after {
+    content:"";
+    background: #00bfff;
+    -webkit-border-radius: 0.2em;
+    border-radius: 0.2em;
+    display: block;
+    height: 0.5em;
+    position: absolute;
+    right: 0;
+    width: 1em;
+}
+
+.arrow.left:before, .arrow.left:after {
+    left: 0;
+}
+
+.arrow.left:before, .arrow.right:after {
+    top: 1em;
+}
+
+.arrow.left:after, .arrow.left:before,.arrow.right:before {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.arrow.right:before, .arrow.left:after {
+    top: 0.66em;
+}
+
+.arrow.left:after, .arrow.right:after {
+    bottom: 0.66em;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.arrow:hover, #arrow:focus {
+    color: #00a0e0;
+    margin-top: 4px;
+    margin-bottom: 2px;
+}
+.arrow:hover:before, .arrow:hover:after,  .arrow:focus:before, .arrow:focus:after {
+    background: #00a0e0;
+}
+
+.arrow:active {
+    color: #0080c0;
+    margin-top: 6px;
+    margin-bottom: 0px;
+}
+.arrow:active:before, .arrow:active:after {
+    background: #0080c0;
+}
+
+.arrow[disabled] {
+    color: #dcdcdc;
+}
+
+.arrow[disabled]:before, .arrow[disabled]:after {
+    background: #dcdcdc;
+}
+
+
+
+
+

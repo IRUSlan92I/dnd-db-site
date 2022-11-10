@@ -25,21 +25,9 @@
                     <td>
                 {% endif %}
                 {% if day.number == calendar_data.current_day and month.id == calendar_data.current_month.id and year_data.id == calendar_data.current_year.id %}
-                    {% if root == 'calendar' %}
-                        <a class="current_day" href="{{year_data.number}}/{{month.number}}/{{day.number}}">{{day.number}}</a>
-                    {% elif root == 'year' %}
-                        <a class="current_day" href="{{month.number}}/{{day.number}}">{{day.number}}</a>
-                    {% elif root == 'month' %}
-                        <a class="current_day" href="{{day.number}}">{{day.number}}</a>
-                    {% endif %}
+                    <a class="current_day" href="{{root}}{{year_data.number}}/{{month.number}}/{{day.number}}">{{day.number}}</a>
                 {% else %}
-                    {% if root == 'calendar' %}
-                        <a href="{{year_data.number}}/{{month.number}}/{{day.number}}">{{day.number}}</a>
-                    {% elif root == 'year' %}
-                        <a href="{{month.number}}/{{day.number}}">{{day.number}}</a>
-                    {% elif root == 'month' %}
-                        <a href="{{day.number}}">{{day.number}}</a>
-                    {% endif %}
+                    <a href="{{root}}{{year_data.number}}/{{month.number}}/{{day.number}}">{{day.number}}</a>
                 {% endif %}
 
                 </td>
