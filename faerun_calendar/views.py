@@ -69,13 +69,63 @@ def day_page(request, year: int, month: int, day: int):
                 params = {'type': 'error', 'error_type': 'day'}
 
     if not params:
+        try:
+            previous_day = {'year': year, 'month': month, 'day': day-1}
+
+            if previous_day['day'] <= 0:
+                previous_day['month'] -= 1
+
+                if previous_day['month'] <= 0:
+                    try:
+                        previous_day['year'] = getattr(getattr(year_data, 'previous_year'), 'number')
+                    except (AttributeError, YearData.DoesNotExist):
+                        previous_day['year'] = None
+
+                    if not previous_day['year']:
+                        previous_day = None
+                    else:
+                        previous_month = MonthData.objects.last()
+                        previous_day['month'] = getattr(previous_month, 'number')
+                        previous_day['day'] = 1 if getattr(previous_month, 'is_oneday') else 30
+                else:
+                    previous_month = MonthData.objects.get(number=previous_day['month'])
+                    previous_day['day'] = 1 if getattr(previous_month, 'is_oneday') else 30
+
+            next_day = {'year': year, 'month': month, 'day': day + 1}
+
+            if next_day['day'] > (1 if is_oneday else 30):
+                next_day['day'] = 1
+                next_day['month'] += 1
+
+                try:
+                    is_month_exist = MonthData.objects.get(number=next_day['month'])
+                except MonthData.DoesNotExist:
+                    is_month_exist = False
+                if not is_month_exist:
+                    next_day['month'] = 1
+
+                    try:
+                        next_day['year'] = getattr(getattr(year_data, 'next_year'), 'number')
+                    except (AttributeError, YearData.DoesNotExist):
+                        next_day['year'] = None
+
+                    if not next_day['year']:
+                        next_day = None
+
+        except AttributeError:
+            params = {'type': 'error', 'error_type': 'month'}
+            print(6)
+
+    if not params:
         params = {
             'type': 'day',
-            'root': '',
+            'root': '../../../',
             'year_data': year_data,
             'month_data': month_data,
             'day': day,
             'events': events,
+            'previous_day': previous_day,
+            'next_day': next_day,
         }
 
     return render(request, 'faerun_calendar/index.html', params)

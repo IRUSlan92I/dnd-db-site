@@ -5,6 +5,10 @@ div.calendarpage {
     border-radius: 20px;
 }
 
+div.calendarpage h2 {
+    text-align: center;
+}
+
 div.current-year {
     display: flex;
     justify-content: space-between;

@@ -41,7 +41,23 @@
     {% elif type == 'day' %}
         <h1 class="title">Календарь — События</h1>
 
+        <div class="current-year">
+        {% if previous_day %}
+            <a draggable="false" class="arrow left" href="{{root}}{{previous_day.year}}/{{previous_day.month}}/{{previous_day.day}}"></a>
+        {% else %}
+            <a draggable="false" class="arrow left" disabled></a>
+        {% endif %}
+
         <h2 class="year">Год {{year_data.number}}-й, {{month_data.name}}{% if not month_data.is_oneday %}, день {{day}}-й{% endif %}</h2>
+
+        {% if next_day %}
+            <a draggable="false" class="arrow right" href="{{root}}{{next_day.year}}/{{next_day.month}}/{{next_day.day}}"></a>
+        {% else %}
+            <a draggable="false" class="arrow right" disabled></a>
+        {% endif %}
+        </div>
+
+        <hr>
 
         <div class="calendar-events">
             {% if events.count == 0 %}
@@ -65,6 +81,8 @@
         </div>
     {% elif type == 'error' %}
         <h1 class="title">Календарь — Ошибка</h1>
+
+        <hr>
 
         <div class="calendar-error">
             {% if error_type == 'year' %}

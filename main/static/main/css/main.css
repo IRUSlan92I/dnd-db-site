@@ -147,6 +147,7 @@ body > div > * {
 }
 
 .arrow[disabled] {
+    margin: 3px 0px;
     color: #dcdcdc;
 }
 
