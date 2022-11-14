@@ -109,6 +109,7 @@ div.event-gm,
 div.event-suggested {
     border: 1px solid #000000;
     padding: 20px;
+    padding-bottom: 0px;
     margin: auto;
     margin-bottom: 15px;
     border-radius: 10px;

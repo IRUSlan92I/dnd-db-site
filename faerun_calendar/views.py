@@ -53,10 +53,19 @@ def day_page(request, year: int, month: int, day: int):
 
     if not params:
         try:
-            events = Event.objects.filter(year=year_id, month=month_id, day=day,
-                                          is_suggested=select_suggested, is_only_for_gm=select_only_for_gm
-                                          ).order_by('time')
-        except Event.DoesNotExist:
+            events = []
+            es = Event.objects.filter(year=year_id, month=month_id, day=day,
+                                      is_suggested=select_suggested, is_only_for_gm=select_only_for_gm
+                                      ).order_by('time')
+            for e in es:
+                event = {}
+                for param in ('time', 'title', 'is_suggested', 'is_only_for_gm'):
+                    event['time'] = getattr(e, 'time')
+
+                event['descriptions'] = tuple(p for p in getattr(e, 'description').split('\n') if p)
+
+                events.append(event)
+        except (Event.DoesNotExist, AttributeError):
             params = {'type': 'error', 'error_type': 'events'}
 
     if not params:

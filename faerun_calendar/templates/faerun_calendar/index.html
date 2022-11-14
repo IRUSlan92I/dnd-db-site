@@ -74,7 +74,11 @@
 
                         <div class="event-time">{{event.time}}</div>
                         <div class="event-title">{{event.title}}</div>
-                        <p class="event-description">{{event.description}}</p>
+                        <p class="event-description">
+                            {% for description in event.descriptions %}
+                            <p>{{description}}</p>
+                            {% endfor %}
+                        </p>
                     </div>
                 {% endfor %}
             {% endif %}
