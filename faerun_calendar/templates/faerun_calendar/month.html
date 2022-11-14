@@ -1,12 +1,17 @@
 <div class="month">
     <table class="month">
         <tr>
+            {% if not month.is_oneday %}
             <th colspan="10" class="title">
-                {% if not month.is_oneday %}
-                    {{month.name}}
+                {{month.name}}
+            {% else %}
+                {% if month.days.0.event_counts %}
+            <th colspan="10" class="title with_events">
                 {% else %}
-                    <a href="{{year_data.number}}/{{month.number}}/{{1}}">{{month.name}}</a>
+            <th colspan="10" class="title">
                 {% endif %}
+                <a href="{{root}}{{year_data.number}}/{{month.number}}/{{1}}">{{month.name}}</a>
+            {% endif %}
             </th>
         </tr>
         {% if month.folkname %}

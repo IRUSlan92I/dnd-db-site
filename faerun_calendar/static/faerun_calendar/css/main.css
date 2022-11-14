@@ -9,6 +9,20 @@ div.content.calendar h2 {
     text-align: center;
 }
 
+div.content.calendar a.button.year {
+    margin: auto;
+}
+
+div.content.calendar a.arrow.left {
+    margin-left: auto;
+    margin-right: 40px;
+}
+
+div.content.calendar a.arrow.right {
+    margin-right: auto;
+    margin-left: 40px;
+}
+
 div.current-year {
     display: flex;
     justify-content: space-between;
@@ -35,7 +49,8 @@ table.month td {
     padding: 5px 0px;
 }
 
-table.month td.with_events {
+table.month td.with_events,
+table.month th.with_events {
     background: #0080c0;
 }
 
@@ -56,7 +71,8 @@ table.month a.current_day {
     border-radius: 50%;
 }
 
-table.month td.with_events a {
+table.month td.with_events a,
+table.month th.with_events a {
     color: #fefefe;
 }
 

@@ -48,7 +48,7 @@
             <a draggable="false" class="arrow left" disabled></a>
         {% endif %}
 
-        <h2 class="year">Год {{year_data.number}}-й, {{month_data.name}}{% if not month_data.is_oneday %}, день {{day}}-й{% endif %}</h2>
+            <h2 class="year"> <a draggable="false" class="button year" href="{{root}}{{year_data.number}}"><br>Год {{year_data.number}}-й</a><div>{{month_data.name}}{% if not month_data.is_oneday %}, день {{day}}-й{% endif %}</div></h2>
 
         {% if next_day %}
             <a draggable="false" class="arrow right" href="{{root}}{{next_day.year}}/{{next_day.month}}/{{next_day.day}}"></a>
