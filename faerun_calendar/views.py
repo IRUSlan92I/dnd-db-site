@@ -60,7 +60,7 @@ def day_page(request, year: int, month: int, day: int):
             for e in es:
                 event = {}
                 for param in ('time', 'title', 'is_suggested', 'is_only_for_gm'):
-                    event['time'] = getattr(e, 'time')
+                    event[param] = getattr(e, param)
 
                 event['descriptions'] = tuple(p for p in getattr(e, 'description').split('\n') if p)
 
